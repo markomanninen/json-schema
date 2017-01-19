@@ -39,7 +39,7 @@ class StringConstraint extends Constraint
         }
 
         // Verify a regex pattern
-        if (isset($schema->pattern) && !preg_match('#' . str_replace('#', '\\#', $schema->pattern) . '#u', $element)) {
+        if (isset($schema->pattern) && !preg_match('#' . str_replace('#', '\\#', $schema->pattern) . '#u'.($schema->inCaseSensitive?'i':''), $element)) {
             $this->addError($path, "Does not match the regex pattern " . $schema->pattern, 'pattern', array(
                 'pattern' => $schema->pattern,
             ));
